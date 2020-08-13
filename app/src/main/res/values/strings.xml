@@ -4,5 +4,7 @@
     <string name="button2Label">Button2</string>
     <string name="button3Label">Button3</string>
     <string name="text1msg">textMsg</string>
+    <string name="item_name">item name</string>
+    <string name="save">save</string>
 
 </resources>
