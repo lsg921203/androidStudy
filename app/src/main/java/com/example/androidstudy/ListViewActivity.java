@@ -3,6 +3,7 @@ package com.example.androidstudy;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +33,7 @@ public class ListViewActivity extends AppCompatActivity {
         datas = new ArrayList<Member>();
 
         // android.R.layout.simple_list_item_1: 안드로이드에서 제공하는 api
-        aa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, datas);
+        aa = new PhoneAdaptor(this,R.layout.item_layout, datas);
         listView.setAdapter(aa);
         //이벤트 리스너 : 이벤트가 발생했는가 기다렸다가 발생하면 핸들러 호출
         //setOnItemClickListener: 리스너를 view에 붙여줌
@@ -44,6 +45,7 @@ public class ListViewActivity extends AppCompatActivity {
                 Toast.makeText(ListViewActivity.this, s, Toast.LENGTH_LONG).show();
             }
         });
+        registerForContextMenu(listView);
     }
 
     public void onSave(View view){
@@ -72,6 +74,33 @@ public class ListViewActivity extends AppCompatActivity {
                 break;
             case 2:
                 Toast.makeText(ListViewActivity.this,"option menu:delete",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("UPDATE");
+        menu.add(0,Menu.FIRST,0,"edit");
+        menu.add(0,Menu.FIRST+1,0,"delete");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int idx = info.position;// info.position : 리스트의 몇 번째 인지 알려줌
+
+        switch(item.getItemId()){
+            case 1:
+                Toast.makeText(ListViewActivity.this,"option menu:edit",Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+
+                datas.remove(idx);
+                aa.notifyDataSetChanged();//데이터 갱신 -> 뷰 갱신
+                Toast.makeText(ListViewActivity.this,"삭제됨",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
