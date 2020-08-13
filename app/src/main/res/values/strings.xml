@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">androidStudy</string>
+    <string name="button1Label">Button1</string>
+    <string name="button2Label">Button2</string>
+    <string name="button3Label">Button3</string>
+    <string name="text1msg">textMsg</string>
+
+</resources>
