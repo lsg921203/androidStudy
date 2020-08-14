@@ -1,6 +1,8 @@
 package com.example.androidstudy;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -21,15 +23,13 @@ public class ListViewActivity extends AppCompatActivity {
     private ArrayList<Member> datas;
     private ArrayAdapter<Member> aa;
     private ListView listView;
-    private EditText name;
-    private EditText tel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
         listView = findViewById(R.id.lv1);
-        name = findViewById(R.id.name);
-        tel = findViewById(R.id.tel);
+
         datas = new ArrayList<Member>();
 
         // android.R.layout.simple_list_item_1: 안드로이드에서 제공하는 api
@@ -47,16 +47,12 @@ public class ListViewActivity extends AppCompatActivity {
         });
         registerForContextMenu(listView);
     }
+    public void onAdd(View view){
 
-    public void onSave(View view){
-        String n = name.getText().toString();
-        String t = tel.getText().toString();
-
-        datas.add(new Member(n,t));
-        name.setText("");
-        tel.setText("");
-        aa.notifyDataSetChanged();//데이터 갱신 -> 뷰 갱신
+        Intent intent = new Intent(this,AddMemberActivity.class);
+        startActivityForResult(intent,1);//requestCode: 어느 엑티비티에 다녀왔는지 표시
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,6 +90,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
             case 1:
+                //edit 창 추가
                 Toast.makeText(ListViewActivity.this,"option menu:edit",Toast.LENGTH_SHORT).show();
                 break;
             case 2:
@@ -104,5 +101,20 @@ public class ListViewActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1:
+                    Member m = (Member) data.getSerializableExtra("m");
+
+                    datas.add(m);
+                    aa.notifyDataSetChanged();//데이터 갱신 -> 뷰 갱신
+                    break;
+            }
+        }
     }
 }

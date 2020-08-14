@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddMemberActivity">
+
+    <EditText
+        android:id="@+id/AddMember_EditText_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/AddMember_EditText_Tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Tel"
+        android:inputType="textPersonName" />
+
+    <RadioGroup
+        android:id="@+id/AddMember_RadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/AddMember_Radio_CellPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="핸드폰" />
+
+        <RadioButton
+            android:id="@+id/AddMember_Radio_HomePhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="집전화" />
+
+        <RadioButton
+            android:id="@+id/AddMember_Radio_JobPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="직장전화" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/AddMember_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/AddMember_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/AddMember_AddButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickAddButton"
+        android:text="ADD" />
+
+</LinearLayout>

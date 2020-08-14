@@ -1,13 +1,20 @@
 package com.example.androidstudy.model;
 
-public class Member {
+import java.io.Serializable;
+
+public class Member implements Serializable {
     private String name;
     private String tel;
-    private String img;
+    private Integer imgRes;
+    private int PhoneType;//핸드폰, 집전화, 회사전화
+
     public Member() {}
-    public Member(String name, String tel) {
+
+    public Member(String name, String tel, Integer imgRes, int phoneType) {
         this.name = name;
         this.tel = tel;
+        this.imgRes = imgRes;
+        PhoneType = phoneType;
     }
 
     public String getName() {
@@ -26,18 +33,25 @@ public class Member {
         this.tel = tel;
     }
 
-    public String getImg() {
-        return img;
+    public Integer getImgRes() {
+        return imgRes;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgRes(Integer imgRes) {
+        this.imgRes = imgRes;
+    }
+
+    public int getPhoneType() {
+        return PhoneType;
+    }
+
+    public void setPhoneType(int phoneType) {
+        PhoneType = phoneType;
     }
 
     @Override
     public String toString() {
-        return
-                "name = " + name + "\n"+
-                "tel = " + tel ;
+        return "name=" + name + '\n' +
+                "tel=" + tel ;
     }
 }

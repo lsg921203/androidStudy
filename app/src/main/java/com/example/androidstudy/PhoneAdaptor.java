@@ -47,8 +47,8 @@ public class PhoneAdaptor extends ArrayAdapter<Member> {
         if(m!=null){
             TextView t1 = (TextView) itemView.findViewById(R.id.textView);
             TextView t2 = (TextView) itemView.findViewById(R.id.textView2);
-            ImageView imgv = itemView.findViewById(R.id.imageView);
-            imgv.setImageResource(R.drawable.ic_launcher_foreground);
+            ImageView imgv = itemView.findViewById(R.id.Item_imageView);
+            //imgv.setImageResource(R.drawable.ic_launcher_foreground);
             Button sms = itemView.findViewById(R.id.button18);
             Button call = itemView.findViewById(R.id.button19);
             if(t1 != null){
@@ -56,6 +56,9 @@ public class PhoneAdaptor extends ArrayAdapter<Member> {
             }
             if(t2 != null){
                 t2.setText(m.getTel());
+            }
+            if(imgv != null){
+                imgv.setImageResource(m.getImgRes());
             }
             call.setOnClickListener(new View.OnClickListener(){
                 @Override
